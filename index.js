@@ -1,3 +1,10 @@
+const logo = document.querySelectorAll("#logo path");
+
+for (let i = 0; i < logo.length; i++) {
+	console.log(logo[i].getTotalLength().toFixed(2));
+}
+////////////////////////
+
 const characterAmountRange = document.querySelector("input[type=range]");
 const characterAmountNumber = document.querySelector("input[type=number]");
 const includeUpperCaseBox = document.querySelector("input[name=UpperCase]");
@@ -108,3 +115,20 @@ characterAmountNumber.addEventListener("input", syncValue);
 characterAmountRange.addEventListener("input", syncValue);
 submitButton.addEventListener("click", submitForm);
 //includeUpperCaseBox.addEventListener("click", () => console.log("hey"));
+
+//copy password on click
+passwordDisplay.onclick = function() {
+	document.execCommand("copy");
+};
+
+function copyPassword(e) {
+	e.preventDefault();
+
+	if (e.clipboardData) {
+		e.clipboardData.setData("text/plain", passwordDisplay.textContent);
+	}
+
+	alert("Password copied");
+}
+
+passwordDisplay.addEventListener("copy", copyPassword);
